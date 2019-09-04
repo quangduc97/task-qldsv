@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2019 at 11:47 AM
+-- Generation Time: Sep 04, 2019 at 06:07 PM
 -- Server version: 10.4.6-MariaDB
 -- PHP Version: 7.1.31
 
@@ -41,6 +41,8 @@ CREATE TABLE `diem` (
 --
 
 INSERT INTO `diem` (`SV`, `MH`, `chuyencan`, `giuaky`, `cuoiky`) VALUES
+('N15DCAT003', 'INT1313', 2, 2, 3),
+('N15DCAT003', 'INT14107', 4, 5, 6),
 ('N15DCAT003', 'INT1433', 5, 1, 2);
 
 -- --------------------------------------------------------

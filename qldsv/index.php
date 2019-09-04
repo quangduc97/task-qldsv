@@ -1,3 +1,10 @@
+<?php
+require_once "class/quantri.php";
+$qt = new quantri();
+
+$showLoad = $qt->Diem_Load();
+?>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,31 +37,36 @@
             <div class="col-xs-12 col-md-12 col-lg-12">
 
                 <div class="panel panel-primary">
-                    <div class="panel-heading">Danh sách sinh viên</div>
+                    <div class="panel-heading">Danh sách sinh viên đã đăng ký môn học</div>
                     <div class="panel-body">
                         <div class="bootstrap-table">
                             <div class="table-responsive">
+                                <a href="dkmh.php" class="btn btn-primary">Đăng ký môn học</a>
+                                <a href="dsdsv.php" class="btn btn-warning">Xem danh sách điểm của tất cả sinh viên</a>
                                 <table class="table table-bordered" style="margin-top:20px;">
                                     <thead>
                                     <tr class="bg-primary">
                                         <th>Mã số sinh viên</th>
                                         <th width="30%">Họ tên sinh viên</th>
-                                        <th>Lớp</th>
+                                        <th>Mã môn học</th>
+                                        <th width="30%">Tên môn học</th>
                                         <th>Tùy chọn</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-<!--                                    --><?php //while ($sv = $showLoad->fetch_assoc()) { ?>
+                                    <?php while ($sv = $showLoad->fetch_assoc()) { ?>
                                         <tr>
-<!--                                            <td>--><?//=$sv['MaSV'] ?><!--</td>-->
-<!--                                            <td>--><?//=$sv['HotenSV'] ?><!--</td>-->
-<!--                                            <td>--><?//=$sv['Lop'] ?><!--</td>-->
+                                            <td><?=$sv['SV'] ?></td>
+                                            <td><?=$sv['HotenSV'] ?></td>
+                                            <td><?=$sv['MH'] ?></td>
+                                            <td><?=$sv['TenMH'] ?></td>
                                             <td>
-<!--                                                <a href="editsinhvien.php?idSV=--><?//=$sv['MaSV'] ?><!--" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>-->
-<!--                                                <a href="deletesinhvien.php?idSV=--><?//=$sv['MaSV'] ?><!--" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Xóa</a>-->
+                                                <a href="nhapdiem.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Nhập điểm</a>
+                                                <a href="editdkmh.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
+                                                <a href="deletedkmh.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Huỷ môn</a>
                                             </td>
                                         </tr>
-<!--                                    --><?php //} ?>
+                                    <?php } ?>
                                     </tbody>
                                 </table>
                             </div>

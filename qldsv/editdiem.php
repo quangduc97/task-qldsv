@@ -2,13 +2,16 @@
 require_once "class/quantri.php";
 $qt = new quantri();
 
-$showSV = $qt->SV_Load();
-$showMH = $qt->MH_Load();
+$idSV = $_GET['idSV'];
+$idMH = $_GET['idMH'];
+$kq = $qt->Diem_ChiTiet($idSV, $idMH);
+if($kq) $row = $kq->fetch_assoc();
 
 if (isset($_POST['submit'])) {
-    $idSV = $_POST['idSV'];
-    $idMH = $_POST['idMH'];
-    $qt->Diem_Them($idSV, $idMH);
+    $cc = $_POST['cc'];
+    $gk = $_POST['gk'];
+    $ck = $_POST['ck'];
+    $qt->Diem_Nhap($idSV, $idMH, $cc, $gk, $ck);
     echo "<script>document.location='index.php';</script>";
     exit();
 }
@@ -33,7 +36,7 @@ if (isset($_POST['submit'])) {
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Đăng ký</h1>
+            <h1 class="page-header">Sửa điểm</h1>
         </div>
     </div><!--/.row-->
 
@@ -41,30 +44,25 @@ if (isset($_POST['submit'])) {
         <div class="col-xs-12 col-md-12 col-lg-12">
 
             <div class="panel panel-primary">
-                <div class="panel-heading">Đăng ký môn học</div>
+                <div class="panel-heading">Sửa điểm môn học</div>
                 <div class="panel-body">
                     <form method="post" enctype="multipart/form-data">
                         <div class="row" style="margin-bottom:40px">
                             <div class="col-xs-8">
                                 <div class="form-group" >
-                                    <label>Chọn sinh viên</label>
-                                    <select required name="idSV" class="form-control">
-                                        <?php while ($sv = $showSV->fetch_assoc()) { ?>
-                                            <option value="<?=$sv['MaSV'] ?>"><?=$sv['MaSV'] ?> - <?=$sv['HotenSV'] ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <label>Điểm chuyên cần</label>
+                                    <input required type="number" min="0" max="10" name="cc" class="form-control" value="<?=$row['chuyencan'] ?>">
                                 </div>
                                 <div class="form-group" >
-                                    <label>Chọn môn học</label>
-                                    <select required name="idMH" class="form-control">
-                                        <?php while ($mh = $showMH->fetch_assoc()) { ?>
-                                            <option value="<?=$mh['MaMH'] ?>"><?=$mh['MaMH'] ?> - <?=$mh['TenMH'] ?></option>
-                                        <?php } ?>
-                                    </select>
+                                    <label>Điểm giữa kỳ</label>
+                                    <input required type="number" min="0" max="10" name="gk" class="form-control" value="<?=$row['giuaky'] ?>">
                                 </div>
-                                <input type="submit" name="submit" value="Đăng ký" class="btn btn-primary">
-                                <a href="dssvdkmh.php" class="btn btn-warning">Xem danh sách sinh viên đã đăng ký môn học</a>
-                                <a href="dkmh.php" class="btn btn-danger">Hủy bỏ</a>
+                                <div class="form-group" >
+                                    <label>Điểm cuối kỳ</label>
+                                    <input required type="number" min="0" max="10" name="ck" class="form-control" value="<?=$row['cuoiky'] ?>">
+                                </div>
+                                <input type="submit" name="submit" value="Sửa" class="btn btn-primary">
+                                <a href="dssvdkmh.php" class="btn btn-danger">Hủy bỏ</a>
                             </div>
                         </div>
                     </form>

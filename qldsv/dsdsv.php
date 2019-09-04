@@ -2,7 +2,7 @@
 require_once "class/quantri.php";
 $qt = new quantri();
 
-$showLoad = $qt->Diem_Load();
+$showLoad = $qt->DSDSV();
 ?>
 
 <!DOCTYPE html>
@@ -22,7 +22,7 @@ $showLoad = $qt->Diem_Load();
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Đăng ký</h1>
+            <h1 class="page-header">Bảng điểm</h1>
         </div>
     </div><!--/.row-->
 
@@ -30,18 +30,22 @@ $showLoad = $qt->Diem_Load();
         <div class="col-xs-12 col-md-12 col-lg-12">
 
             <div class="panel panel-primary">
-                <div class="panel-heading">Danh sách sinh viên đã đăng ký môn học</div>
+                <div class="panel-heading">Danh sách điểm sinh viên</div>
                 <div class="panel-body">
                     <div class="bootstrap-table">
                         <div class="table-responsive">
-                            <a href="dkmh.php" class="btn btn-primary">Đăng ký môn học</a>
                             <table class="table table-bordered" style="margin-top:20px;">
                                 <thead>
                                 <tr class="bg-primary">
                                     <th>Mã số sinh viên</th>
                                     <th width="30%">Họ tên sinh viên</th>
+                                    <th>Mã lớp</th>
+                                    <th width="30%">Tên lớp</th>
                                     <th>Mã môn học</th>
                                     <th width="30%">Tên môn học</th>
+                                    <th>Điểm chuyên cân</th>
+                                    <th>Điểm giữa kỳ</th>
+                                    <th>Điểm cuối kỳ</th>
                                     <th>Tùy chọn</th>
                                 </tr>
                                 </thead>
@@ -50,12 +54,15 @@ $showLoad = $qt->Diem_Load();
                                     <tr>
                                         <td><?=$sv['SV'] ?></td>
                                         <td><?=$sv['HotenSV'] ?></td>
+                                        <td><?=$sv['MaLop'] ?></td>
+                                        <td><?=$sv['TenLop'] ?></td>
                                         <td><?=$sv['MH'] ?></td>
                                         <td><?=$sv['TenMH'] ?></td>
+                                        <td><?=$sv['chuyencan'] ?></td>
+                                        <td><?=$sv['giuaky'] ?></td>
+                                        <td><?=$sv['cuoiky'] ?></td>
                                         <td>
-                                            <a href="nhapdiem.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-primary"><i class="fa fa-pencil" aria-hidden="true"></i> Nhập điểm</a>
-                                            <a href="editdkmh.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
-                                            <a href="deletedkmh.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i> Huỷ môn</a>
+                                            <a href="editdiem.php?idSV=<?=$sv['SV'] ?>&idMH=<?=$sv['MH'] ?>" class="btn btn-warning"><i class="fa fa-pencil" aria-hidden="true"></i> Sửa</a>
                                         </td>
                                     </tr>
                                 <?php } ?>

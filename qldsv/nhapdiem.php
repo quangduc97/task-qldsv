@@ -10,7 +10,7 @@ if (isset($_POST['submit'])) {
     $gk = $_POST['gk'];
     $ck = $_POST['ck'];
     $qt->Diem_Nhap($idSV, $idMH, $cc, $gk, $ck);
-    echo "<script>document.location='dssvdkmh.php';</script>";
+    echo "<script>document.location='index.php';</script>";
     exit();
 }
 
@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
 <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
     <div class="row">
         <div class="col-lg-12">
-            <h1 class="page-header">Đăng ký</h1>
+            <h1 class="page-header">Nhập điểm</h1>
         </div>
     </div><!--/.row-->
 
@@ -42,7 +42,7 @@ if (isset($_POST['submit'])) {
         <div class="col-xs-12 col-md-12 col-lg-12">
 
             <div class="panel panel-primary">
-                <div class="panel-heading">Đăng ký môn học</div>
+                <div class="panel-heading">Nhập điểm môn học</div>
                 <div class="panel-body">
                     <form method="post" enctype="multipart/form-data">
                         <div class="row" style="margin-bottom:40px">
@@ -59,9 +59,8 @@ if (isset($_POST['submit'])) {
                                     <label>Điểm cuối kỳ</label>
                                     <input required type="number" min="0" max="10" name="ck" class="form-control">
                                 </div>
-                                <input type="submit" name="submit" value="Đăng ký" class="btn btn-primary">
-                                <a href="dssvdkmh.php" class="btn btn-warning">Xem danh sách sinh viên đã đăng ký môn học</a>
-                                <a href="dkmh.php" class="btn btn-danger">Hủy bỏ</a>
+                                <input type="submit" name="submit" value="Nhập điểm" class="btn btn-primary">
+                                <a href="dssvdkmh.php" class="btn btn-danger">Hủy bỏ</a>
                             </div>
                         </div>
                     </form>

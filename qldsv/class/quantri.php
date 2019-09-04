@@ -139,5 +139,12 @@ class quantri extends goc {
         if(!$kq) die($this->db->error);
         return $kq;
     }
+
+    function DSDSV() {
+        $sql = "select SV, sinhvien.HotenSV, MaLop, TenLop,  MH, monhoc.TenMH, chuyencan, giuaky, cuoiky from diem, sinhvien, monhoc, lop where diem.SV = sinhvien.MaSV and lop.MaLop = sinhvien.Lop and diem.MH = monhoc.MaMH order by SV desc";
+        $kq = $this->db->query($sql);
+        if(!$kq) die($this->db-error);
+        return $kq;
+    }
 }
 ?>
